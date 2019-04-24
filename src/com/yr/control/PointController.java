@@ -19,7 +19,7 @@ public class PointController {
 	private PointDAO dao;
 	private PointInput pi;
 	private PointView pv;
-
+	
 	public PointController() {
 		sc = new Scanner(System.in);
 		pi = new PointInput();
@@ -40,7 +40,11 @@ public class PointController {
 
 			switch(select) {
 			case 1: 
+				
 				dto = pi.setPoint();
+				int num = dao.selectNum();
+				dto.setNum(num+1);
+				
 				int result = dao.insert(dto);
 				String message = "등록 실패";
 				if(result>0) {
@@ -49,7 +53,7 @@ public class PointController {
 				pv.view(message);
 				break;
 			case 2:
-				int num = pi.setNum("삭제할 ");
+				num = pi.setNum("삭제할 ");
 				result = dao.delete(num);
 				message = "삭제 실패";
 				if(result>0) {

@@ -3,6 +3,7 @@ package com.yr.test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.junit.Test;
 import com.yr.point.PointDAO;
@@ -10,14 +11,13 @@ import com.yr.point.PointDTO;
 
 public class DBConnectTest {
 
-	@Test
+//	@Test
 	public void selectListTest() throws Exception {
 		PointDAO dao = new PointDAO();
 		ArrayList<PointDTO> ar = dao.selectList();
 		assertNotEquals(0, ar.size());
 	}
-	
-	
+
 	
 	
 	
@@ -29,8 +29,8 @@ public class DBConnectTest {
 		
 	}
 	
-	/*
-	@Test
+	
+//	@Test
 	public void deleteTest() throws Exception {
 		PointDAO dao = new PointDAO();
 		int result = dao.delete(5);
@@ -42,15 +42,19 @@ public class DBConnectTest {
 	public void test() throws Exception {
 		
 		PointDAO dao = new PointDAO();
+		Random rd = new Random();
+		for(int i=0; i<99; i++) {	
 		PointDTO dto = new PointDTO();
-		dto.setNum(2);
-		dto.setSid("id");
-		dto.setKor(20);
+		int num = dao.selectNum();
+		dto.setNum(num+1);
+		dto.setSid("iu"+i);
+		dto.setKor(rd.nextInt(101));
+		dto.setEng(rd.nextInt(101));
 		int result = dao.insert(dto);
-		
-		assertEquals(1, result);
+
+		}
 	}
-*/
+
 	
 	
 }

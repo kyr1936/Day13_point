@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Set;
 
+import javax.naming.spi.DirStateFactory.Result;
+
 import com.yr.util.DBConnector;
 
 public class PointDAO {		// 조작만 함
@@ -14,10 +16,21 @@ public class PointDAO {		// 조작만 함
 	
 	
 	
-	
-	
-	
-	
+	public int selectNum() throws Exception {
+		Connection con = DBConnector.getConnect();
+		String sql = "select nvl(max(num),0) from point";
+		PreparedStatement st = con.prepareStatement(sql);
+		ResultSet rs = st.executeQuery();
+		
+		rs.next();
+		int num = rs.getInt(1);
+		
+	//	DBConnector.disConnect(st, con, rs);
+		return num;
+		
+		
+		
+	}
 	
 	
 	public ArrayList<PointDTO> selectList() throws Exception {

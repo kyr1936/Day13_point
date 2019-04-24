@@ -2,6 +2,7 @@ package com.yr.input;
 
 import java.util.Scanner;
 
+import com.yr.point.PointDAO;
 import com.yr.point.PointDTO;
 
 public class PointInput {
@@ -16,12 +17,15 @@ public class PointInput {
 		
 	}
 	
-	public PointDTO setPoint() {
+	public PointDTO setPoint() throws Exception {
 		Scanner sc = new Scanner(System.in);
 		PointDTO dto = new PointDTO();
+		PointDAO dao = new PointDAO();
 		
-		System.out.println("num 입력");
-		dto.setNum(sc.nextInt());
+		
+	//	System.out.println("num 입력");
+	//	dto.setNum(sc.nextInt());
+	
 		System.out.println("sid 입력");
 		dto.setSid(sc.next());
 		System.out.println("kor 입력");
